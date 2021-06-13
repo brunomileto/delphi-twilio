@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6F84A088-A8C7-4B1F-B3B6-313CCD74E0AA}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="delphiTwilioBasicChat.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="server\delphiTwilioServerAPI.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="delphiTwilioBasicChat">
+        <MSBuild Projects="delphiTwilioBasicChat.dproj"/>
+    </Target>
+    <Target Name="delphiTwilioBasicChat:Clean">
+        <MSBuild Projects="delphiTwilioBasicChat.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="delphiTwilioBasicChat:Make">
+        <MSBuild Projects="delphiTwilioBasicChat.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="delphiTwilioServerAPI">
+        <MSBuild Projects="server\delphiTwilioServerAPI.dproj"/>
+    </Target>
+    <Target Name="delphiTwilioServerAPI:Clean">
+        <MSBuild Projects="server\delphiTwilioServerAPI.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="delphiTwilioServerAPI:Make">
+        <MSBuild Projects="server\delphiTwilioServerAPI.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="delphiTwilioBasicChat;delphiTwilioServerAPI"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="delphiTwilioBasicChat:Clean;delphiTwilioServerAPI:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="delphiTwilioBasicChat:Make;delphiTwilioServerAPI:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
